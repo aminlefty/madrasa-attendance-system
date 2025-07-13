@@ -1,0 +1,138 @@
+{
+  "students": [
+    {
+      "id": "1",
+      "name": "Amina Yusuf",
+      "sclass": "Grade 5",
+      "guardian": "0711223344"
+    },
+    {
+      "id": "2",
+      "name": "Ali Osman",
+      "sclass": "Grade 6",
+      "guardian": "0722334455"
+    },
+    {
+      "id": "3",
+      "name": "Maryam Abdi",
+      "sclass": "Hifz 1",
+      "guardian": "0733445566"
+    },
+    {
+      "id": "4",
+      "name": "Hamza Noor",
+      "sclass": "Grade 7",
+      "guardian": "0744556677"
+    },
+    {
+      "id": "5",
+      "name": "Fatuma Ali",
+      "sclass": "Grade 8",
+      "guardian": "0755667788"
+    },
+    {
+      "id": "6",
+      "name": "Mohamed Hassan",
+      "sclass": "Hifz 2",
+      "guardian": "0766778899"
+    },
+    {
+      "id": "7",
+      "name": "Khadija Ahmed",
+      "sclass": "Grade 9",
+      "guardian": "0777889900"
+    },
+    {
+      "id": "8",
+      "name": "Yusuf Ibrahim",
+      "sclass": "Hifz 3",
+      "guardian": "0788990011"
+    },
+    {
+      "id": "9",
+      "name": "Nasteha Mohamed",
+      "sclass": "Grade 6",
+      "guardian": "0799001122"
+    },
+    {
+      "id": "10",
+      "name": "Hussein Aden",
+      "sclass": "Grade 5",
+      "guardian": "0700112233"
+    },
+    {
+      "id": "11",
+      "name": "Zahra Ali",
+      "sclass": "Grade 10",
+      "guardian": "0700223344"
+    },
+    {
+      "id": "12",
+      "name": "Abdullahi Barre",
+      "sclass": "Hifz 4",
+      "guardian": "0700334455"
+    },
+    {
+      "id": 1752428630890,
+      "name": "Amin Abdullahi",
+      "sclass": "Grade 7",
+      "guardian": "0726151099"
+    }
+  ],
+  "teachers": [
+    {
+      "id": "1",
+      "name": "Ustad Abdi",
+      "subject": "Quran",
+      "contact": "0700111122"
+    },
+    {
+      "id": "2",
+      "name": "Ustadah Saida",
+      "subject": "Tajweed",
+      "contact": "0711222333"
+    },
+    {
+      "id": "3",
+      "name": "Ustad Mohamed",
+      "subject": "Fiqh",
+      "contact": "0722333444"
+    },
+    {
+      "id": "4",
+      "name": "Ustadah Nimo",
+      "subject": "Aqidah",
+      "contact": "0733444555"
+    },
+    {
+      "id": "5",
+      "name": "Ustad Khalif",
+      "subject": "Arabic",
+      "contact": "0744555666"
+    },
+    {
+      "id": "6",
+      "name": "Ustadah Hibo",
+      "subject": "Seerah",
+      "contact": "0755666777"
+    },
+    {
+      "id": "7",
+      "name": "Ustad Ibrahim",
+      "subject": "Hadith",
+      "contact": "0766777888"
+    },
+    {
+      "id": "8",
+      "name": "Ustadah Rukia",
+      "subject": "Tafsir",
+      "contact": "0777888999"
+    },
+    {
+      "id": 1752428704773,
+      "name": "mr abdi",
+      "subject": "Arabic",
+      "contact": "0737327172"
+    }
+  ]
+}

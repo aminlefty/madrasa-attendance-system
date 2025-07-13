@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Madrasa An-Najah | Smart Attendance System</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --primary: #4361ee;
+      --secondary: #3f37c9;
+      --accent: #4895ef;
+      --danger: #f72585;
+      --success: #4cc9f0;
+    }
+    
+    .card-hover:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    }
+    
+    .attendance-badge {
+      transition: all 0.2s ease;
+    }
+    
+    .attendance-badge:hover {
+      transform: scale(1.05);
+    }
+    
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.5; }
+    }
+    
+    .pulse {
+      animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    }
+    
+    .gradient-header {
+      background: linear-gradient(135deg, #4361ee 0%, #3a0ca3 100%);
+    }
+  </style>
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans antialiased">
+
+  <div class="container mx-auto p-6">
+    <!-- Colored Header -->
+    <header class="mb-6 gradient-header text-white p-4 rounded-lg shadow-lg">
+      <div class="flex justify-between items-center">
+        <div>
+          <h1 class="text-3xl font-bold mb-1">Madrasa An-Najah Attendance Dashboard</h1>
+          <p class="text-sm opacity-90">Date: <span id="currentDate" class="font-medium">Loading...</span></p>
+        </div>
+        <div class="flex items-center space-x-4">
+          <div class="relative">
+            <i class="fas fa-bell absolute left-3 top-3 text-blue-200"></i>
+            <div id="notificationBadge" class="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center hidden">0</div>
+            <input type="text" placeholder="Search..." class="pl-10 pr-4 py-2 rounded-full bg-blue-500 bg-opacity-20 text-white placeholder-blue-200 focus:outline-none focus:ring-2 focus:ring-blue-300">
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Stats Summary -->
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+      <div class="bg-white p-4 rounded-lg shadow-md card-hover transition duration-300">
+        <div class="flex items-center justify-between">
+          <div>
+            <h2 class="text-lg font-semibold text-gray-500">Total Students</h2>
+            <p id="statTotalStudents" class="text-2xl font-bold text-blue-600">0</p>
+          </div>
+          <div class="bg-blue-100 p-2 rounded-full">
+            <i class="fas fa-users text-blue-600"></i>
+          </div>
+        </div>
+        <p class="text-sm text-green-600 mt-2"><i class="fas fa-arrow-up mr-1"></i> <span id="studentGrowth">0%</span> from last month</p>
+      </div>
+      
+      <div class="bg-white p-4 rounded-lg shadow-md card-hover transition duration-300">
+        <div class="flex items-center justify-between">
+          <div>
+            <h2 class="text-lg font-semibold text-gray-500">Present</h2>
+            <p id="statPresent" class="text-2xl font-bold text-green-600">0</p>
+          </div>
+          <div class="bg-green-100 p-2 rounded-full">
+            <i class="fas fa-check-circle text-green-600"></i>
+          </div>
+        </div>
+        <p class="text-sm text-gray-500 mt-2"><i class="fas fa-clock mr-1"></i> Updated just now</p>
+      </div>
+      
+      <div class="bg-white p-4 rounded-lg shadow-md card-hover transition duration-300">
+        <div class="flex items-center justify-between">
+          <div>
+            <h2 class="text-lg font-semibold text-gray-500">Absent</h2>
+            <p id="statAbsent" class="text-2xl font-bold text-red-600">0</p>
+          </div>
+          <div class="bg-red-100 p-2 rounded-full">
+            <i class="fas fa-times-circle text-red-600"></i>
+          </div>
+        </div>
+        <button onclick="notifyParents()" class="text-xs bg-red-100 text-red-600 px-2 py-1 rounded-full hover:bg-red-200 transition mt-2">
+          <i class="fas fa-envelope mr-1"></i> Notify Parents
+        </button>
+      </div>
+      
+      <div class="bg-white p-4 rounded-lg shadow-md card-hover transition duration-300">
+        <div class="flex items-center justify-between">
+          <div>
+            <h2 class="text-lg font-semibold text-gray-500">Late</h2>
+            <p id="statLate" class="text-2xl font-bold text-yellow-600">0</p>
+          </div>
+          <div class="bg-yellow-100 p-2 rounded-full">
+            <i class="fas fa-clock text-yellow-600"></i>
+          </div>
+        </div>
+        <p id="lateArrivalAlert" class="text-sm text-yellow-600 mt-2 pulse hidden"><i class="fas fa-exclamation-circle mr-1"></i> <span id="lateCount">0</span> new arrivals</p>
+      </div>
+    </div>
+
+    <!-- Charts Row -->
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
+      <!-- Attendance Chart -->
+      <div class="bg-white p-4 rounded-lg shadow-md">
+        <div class="flex justify-between items-center mb-4">
+          <h2 class="text-lg font-semibold">Weekly Attendance</h2>
+          <select id="attendancePeriod" class="bg-gray-100 border-0 text-sm rounded-lg px-3 py-1 focus:ring-2 focus:ring-blue-200">
+            <option>This Week</option>
+            <option>Last Week</option>
+            <option>This Month</option>
+          </select>
+        </div>
+        <div class="h-64">
+          <canvas id="attendanceChart"></canvas>
+        </div>
+      </div>
+      
+      <!-- Class Distribution -->
+      <div class="bg-white p-4 rounded-lg shadow-md">
+        <div class="flex justify-between items-center mb-4">
+          <h2 class="text-lg font-semibold">Class Distribution</h2>
+          <button class="text-blue-600 text-sm font-medium">
+            <i class="fas fa-ellipsis-h"></i>
+          </button>
+        </div>
+        <div class="h-64">
+          <canvas id="classDistributionChart"></canvas>
+        </div>
+      </div>
+      
+      <!-- Hifz Progress -->
+      <div class="bg-white p-4 rounded-lg shadow-md">
+        <div class="flex justify-between items-center mb-4">
+          <h2 class="text-lg font-semibold">Hifz Progress</h2>
+          <span id="hifzCompleters" class="text-xs bg-green-100 text-green-800 px-2 py-1 rounded-full hidden">0 New Completers</span>
+        </div>
+        <div class="h-64">
+          <div id="hifzProgressChart"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Student & Teacher Management -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+      <!-- Student Form -->
+      <div class="bg-white p-4 rounded-lg shadow-md">
+        <h2 class="text-xl font-semibold mb-2">Student Management</h2>
+        <form id="studentForm" class="space-y-4">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
+              <input type="text" id="studentName" placeholder="Abdullah Khan" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-200 focus:border-blue-500" required>
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1">Class</label>
+              <select id="studentClass" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-200 focus:border-blue-500" required>
+                <option value="">Select Class</option>
+                <option>Grade 5</option>
+                <option>Grade 6</option>
+                <option>Grade 7</option>
+                <option>Grade 8</option>
+              </select>
+            </div>
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-1">Guardian Contact</label>
+            <div class="relative">
+              <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                <i class="fas fa-phone text-gray-400"></i>
+              </div>
+              <input type="text" id="guardianContact" placeholder="+92 300 1234567" class="w-full pl-10 p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-200 focus:border-blue-500" required>
+            </div>
+          </div>
+          <div class="flex justify-end space-x-3">
+            <button type="reset" class="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 transition">Cancel</button>
+            <button type="submit" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition flex items-center">
+              <i class="fas fa-save mr-2"></i> Save Student
+            </button>
+          </div>
+        </form>
+      </div>
+      
+      <!-- Teacher Form -->
+      <div class="bg-white p-4 rounded-lg shadow-md">
+        <h2 class="text-xl font-semibold mb-2">Teacher Management</h2>
+        <form id="teacherForm" class="space-y-4">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
+              <input type="text" id="teacherName" placeholder="Muhammad Ali" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-200 focus:border-blue-500" required>
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1">Subject</label>
+              <select id="teacherSubject" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-200 focus:border-blue-500" required>
+                <option value="">Select Subject</option>
+                <option>Quran</option>
+                <option>Arabic</option>
+                <option>Fiqh</option>
+                <option>Hadith</option>
+              </select>
+            </div>
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-1">Contact Information</label>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div class="relative">
+                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                  <i class="fas fa-phone text-gray-400"></i>
+                </div>
+                <input type="text" id="teacherContact" placeholder="Phone Number" class="w-full pl-10 p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-200 focus:border-blue-500" required>
+              </div>
+              <div class="relative">
+                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                  <i class="fas fa-envelope text-gray-400"></i>
+                </div>
+                <input type="email" placeholder="Email Address" class="w-full pl-10 p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-200 focus:border-blue-500">
+              </div>
+            </div>
+          </div>
+          <div class="flex justify-end space-x-3">
+            <button type="reset" class="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 transition">Cancel</button>
+            <button type="submit" class="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition flex items-center">
+              <i class="fas fa-save mr-2"></i> Save Teacher
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Student & Teacher Lists -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+      <div class="bg-white p-4 rounded-lg shadow-md">
+        <h2 class="text-lg font-semibold mb-2">Students</h2>
+        <ul id="studentList" class="space-y-2">
+          <!-- Student list will be populated by JavaScript -->
+        </ul>
+      </div>
+      <div class="bg-white p-4 rounded-lg shadow-md">
+        <h2 class="text-lg font-semibold mb-2">Teachers</h2>
+        <ul id="teacherList" class="space-y-2">
+          <!-- Teacher list will be populated by JavaScript -->
+        </ul>
+      </div>
+    </div>
+
+    <!-- Attendance Table -->
+    <div class="bg-white p-4 rounded-lg shadow-md">
+      <div class="flex justify-between items-center mb-4">
+        <h2 class="text-lg font-semibold">Attendance Log</h2>
+        <div class="flex space-x-2">
+          <select id="classFilter" class="border p-2 rounded text-sm focus:ring-2 focus:ring-blue-200">
+            <option value="">All Classes</option>
+            <option>Grade 5</option>
+            <option>Grade 6</option>
+            <option>Grade 7</option>
+            <option>Grade 8</option>
+          </select>
+          <button onclick="exportAttendance()" class="px-3 py-2 bg-blue-600 text-white rounded text-sm hover:bg-blue-700 transition flex items-center">
+            <i class="fas fa-download mr-1"></i> Export
+          </button>
+        </div>
+      </div>
+      <div class="overflow-x-auto">
+        <table class="min-w-full divide-y divide-gray-200">
+          <thead class="bg-gray-50">
+            <tr>
+              <th scope="col" class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">#</th>
+              <th scope="col" class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</th>
+              <th scope="col" class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Class</th>
+              <th scope="col" class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+              <th scope="col" class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Time</th>
+              <th scope="col" class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+            </tr>
+          </thead>
+          <tbody id="attendanceTable" class="bg-white divide-y divide-gray-200">
+            <!-- Attendance data will be inserted here -->
+          </tbody>
+        </table>
+      </div>
+      <div class="px-4 py-2 border-t border-gray-200">
+        <div class="flex justify-between items-center">
+          <div class="text-sm text-gray-700">
+            Showing <span id="showingFrom" class="font-medium">1</span> to <span id="showingTo" class="font-medium">10</span> of <span id="totalEntries" class="font-medium">0</span> entries
+          </div>
+          <div class="flex space-x-1">
+            <button onclick="previousPage()" class="px-3 py-1 border border-gray-300 rounded text-gray-700 hover:bg-gray-50">Previous</button>
+            <button onclick="goToPage(1)" class="px-3 py-1 bg-blue-600 text-white rounded hover:bg-blue-700">1</button>
+            <button onclick="goToPage(2)" class="px-3 py-1 border border-gray-300 rounded text-gray-700 hover:bg-gray-50">2</button>
+            <button onclick="nextPage()" class="px-3 py-1 border border-gray-300 rounded text-gray-700 hover:bg-gray-50">Next</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
