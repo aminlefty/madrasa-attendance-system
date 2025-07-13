@@ -1,138 +1,76 @@
 {
   "students": [
-    {
-      "id": "1",
-      "name": "Amina Yusuf",
-      "sclass": "Grade 5",
-      "guardian": "0711223344"
-    },
-    {
-      "id": "2",
-      "name": "Ali Osman",
-      "sclass": "Grade 6",
-      "guardian": "0722334455"
-    },
-    {
-      "id": "3",
-      "name": "Maryam Abdi",
-      "sclass": "Hifz 1",
-      "guardian": "0733445566"
-    },
-    {
-      "id": "4",
-      "name": "Hamza Noor",
-      "sclass": "Grade 7",
-      "guardian": "0744556677"
-    },
-    {
-      "id": "5",
-      "name": "Fatuma Ali",
-      "sclass": "Grade 8",
-      "guardian": "0755667788"
-    },
-    {
-      "id": "6",
-      "name": "Mohamed Hassan",
-      "sclass": "Hifz 2",
-      "guardian": "0766778899"
-    },
-    {
-      "id": "7",
-      "name": "Khadija Ahmed",
-      "sclass": "Grade 9",
-      "guardian": "0777889900"
-    },
-    {
-      "id": "8",
-      "name": "Yusuf Ibrahim",
-      "sclass": "Hifz 3",
-      "guardian": "0788990011"
-    },
-    {
-      "id": "9",
-      "name": "Nasteha Mohamed",
-      "sclass": "Grade 6",
-      "guardian": "0799001122"
-    },
-    {
-      "id": "10",
-      "name": "Hussein Aden",
-      "sclass": "Grade 5",
-      "guardian": "0700112233"
-    },
-    {
-      "id": "11",
-      "name": "Zahra Ali",
-      "sclass": "Grade 10",
-      "guardian": "0700223344"
-    },
-    {
-      "id": "12",
-      "name": "Abdullahi Barre",
-      "sclass": "Hifz 4",
-      "guardian": "0700334455"
-    },
-    {
-      "id": 1752428630890,
-      "name": "Amin Abdullahi",
-      "sclass": "Grade 7",
-      "guardian": "0726151099"
-    }
+    {"id": 1, "name": "Amina Yusuf", "sclass": "Grade 5", "guardian": "0711223344"},
+    {"id": 2, "name": "Ali Osman", "sclass": "Grade 6", "guardian": "0722334455"},
+    {"id": 3, "name": "Maryam Abdi", "sclass": "Hifz 1", "guardian": "0733445566"},
+    {"id": 4, "name": "Hamza Noor", "sclass": "Grade 7", "guardian": "0744556677"},
+    {"id": 5, "name": "Fatuma Ali", "sclass": "Grade 8", "guardian": "0755667788"},
+    {"id": 6, "name": "Mohamed Hassan", "sclass": "Hifz 2", "guardian": "0766778899"},
+    {"id": 7, "name": "Khadija Ahmed", "sclass": "Grade 9", "guardian": "0777889900"},
+    {"id": 8, "name": "Yusuf Ibrahim", "sclass": "Hifz 3", "guardian": "0788990011"},
+    {"id": 9, "name": "Nasteha Mohamed", "sclass": "Grade 6", "guardian": "0799001122"},
+    {"id": 10, "name": "Hussein Aden", "sclass": "Grade 5", "guardian": "0700112233"},
+    {"id": 11, "name": "Zahra Ali", "sclass": "Grade 10", "guardian": "0700223344"},
+    {"id": 12, "name": "Abdullahi Barre", "sclass": "Hifz 4", "guardian": "0700334455"},
+    {"id": 13, "name": "Fardowsa Abdi", "sclass": "Grade 7", "guardian": "0700445566"},
+    {"id": 14, "name": "Omar Farah", "sclass": "Grade 8", "guardian": "0700556677"},
+    {"id": 15, "name": "Halima Ahmed", "sclass": "Hifz 1", "guardian": "0700667788"},
+    {"id": 16, "name": "Ahmed Khalif", "sclass": "Grade 9", "guardian": "0700778899"},
+    {"id": 17, "name": "Safiya Mohamed", "sclass": "Grade 10", "guardian": "0700889900"},
+    {"id": 18, "name": "Musa Hassan", "sclass": "Hifz 2", "guardian": "0700990011"},
+    {"id": 19, "name": "Aisha Abukar", "sclass": "Grade 5", "guardian": "0701001122"},
+    {"id": 20, "name": "Ibrahim Aden", "sclass": "Grade 6", "guardian": "0701112233"},
+    {"id": 21, "name": "Khadar Ali", "sclass": "Hifz 3", "guardian": "0701223344"},
+    {"id": 22, "name": "Faisal Omar", "sclass": "Grade 7", "guardian": "0701334455"},
+    {"id": 23, "name": "Hodan Yusuf", "sclass": "Grade 8", "guardian": "0701445566"},
+    {"id": 24, "name": "Abdirahman Ahmed", "sclass": "Hifz 4", "guardian": "0701556677"},
+    {"id": 25, "name": "Samira Abdi", "sclass": "Grade 9", "guardian": "0701667788"},
+    {"id": 26, "name": "Mustafa Hassan", "sclass": "Grade 10", "guardian": "0701778899"},
+    {"id": 27, "name": "Nasra Mohamed", "sclass": "Hifz 1", "guardian": "0701889900"},
+    {"id": 28, "name": "Abdirashid Ali", "sclass": "Grade 5", "guardian": "0701990011"},
+    {"id": 29, "name": "Sadiya Noor", "sclass": "Grade 6", "guardian": "0702001122"},
+    {"id": 30, "name": "Mukhtar Farah", "sclass": "Hifz 2", "guardian": "0702112233"},
+    {"id": 31, "name": "Asha Ibrahim", "sclass": "Grade 7", "guardian": "0702223344"},
+    {"id": 32, "name": "Bashir Aden", "sclass": "Grade 8", "guardian": "0702334455"},
+    {"id": 33, "name": "Fadumo Ahmed", "sclass": "Hifz 3", "guardian": "0702445566"},
+    {"id": 34, "name": "Abdulkadir Hassan", "sclass": "Grade 9", "guardian": "0702556677"},
+    {"id": 35, "name": "Zainab Omar", "sclass": "Grade 10", "guardian": "0702667788"},
+    {"id": 36, "name": "Mohamud Ali", "sclass": "Hifz 4", "guardian": "0702778899"},
+    {"id": 37, "name": "Hamdi Abdi", "sclass": "Grade 5", "guardian": "0702889900"},
+    {"id": 38, "name": "Idris Mohamed", "sclass": "Grade 6", "guardian": "0702990011"},
+    {"id": 39, "name": "Habiba Yusuf", "sclass": "Hifz 1", "guardian": "0703001122"},
+    {"id": 40, "name": "Jama Hassan", "sclass": "Grade 7", "guardian": "0703112233"},
+    {"id": 41, "name": "Naima Ahmed", "sclass": "Grade 8", "guardian": "0703223344"},
+    {"id": 42, "name": "Abdihafid Ali", "sclass": "Hifz 2", "guardian": "0703334455"},
+    {"id": 43, "name": "Shukri Abdi", "sclass": "Grade 9", "guardian": "0703445566"},
+    {"id": 44, "name": "Abdifatah Omar", "sclass": "Grade 10", "guardian": "0703556677"},
+    {"id": 45, "name": "Hani Mohamed", "sclass": "Hifz 3", "guardian": "0703667788"},
+    {"id": 46, "name": "Sahal Hassan", "sclass": "Grade 5", "guardian": "0703778899"},
+    {"id": 47, "name": "Ifrah Yusuf", "sclass": "Grade 6", "guardian": "0703889900"},
+    {"id": 48, "name": "Abdirazak Ahmed", "sclass": "Hifz 4", "guardian": "0703990011"},
+    {"id": 49, "name": "Farhiya Ali", "sclass": "Grade 7", "guardian": "0704001122"},
+    {"id": 50, "name": "Abdullahi Mohamed", "sclass": "Grade 8", "guardian": "0704112233"}
   ],
   "teachers": [
-    {
-      "id": "1",
-      "name": "Ustad Abdi",
-      "subject": "Quran",
-      "contact": "0700111122"
-    },
-    {
-      "id": "2",
-      "name": "Ustadah Saida",
-      "subject": "Tajweed",
-      "contact": "0711222333"
-    },
-    {
-      "id": "3",
-      "name": "Ustad Mohamed",
-      "subject": "Fiqh",
-      "contact": "0722333444"
-    },
-    {
-      "id": "4",
-      "name": "Ustadah Nimo",
-      "subject": "Aqidah",
-      "contact": "0733444555"
-    },
-    {
-      "id": "5",
-      "name": "Ustad Khalif",
-      "subject": "Arabic",
-      "contact": "0744555666"
-    },
-    {
-      "id": "6",
-      "name": "Ustadah Hibo",
-      "subject": "Seerah",
-      "contact": "0755666777"
-    },
-    {
-      "id": "7",
-      "name": "Ustad Ibrahim",
-      "subject": "Hadith",
-      "contact": "0766777888"
-    },
-    {
-      "id": "8",
-      "name": "Ustadah Rukia",
-      "subject": "Tafsir",
-      "contact": "0777888999"
-    },
-    {
-      "id": 1752428704773,
-      "name": "mr abdi",
-      "subject": "Arabic",
-      "contact": "0737327172"
-    }
+    {"id": 1, "name": "Ustad Abdi", "subject": "Quran", "contact": "0700111122"},
+    {"id": 2, "name": "Ustadah Saida", "subject": "Tajweed", "contact": "0711222333"},
+    {"id": 3, "name": "Ustad Mohamed", "subject": "Fiqh", "contact": "0722333444"},
+    {"id": 4, "name": "Ustadah Nimo", "subject": "Aqidah", "contact": "0733444555"},
+    {"id": 5, "name": "Ustad Khalif", "subject": "Arabic", "contact": "0744555666"},
+    {"id": 6, "name": "Ustadah Hibo", "subject": "Seerah", "contact": "0755666777"},
+    {"id": 7, "name": "Ustad Ibrahim", "subject": "Hadith", "contact": "0766777888"},
+    {"id": 8, "name": "Ustadah Rukia", "subject": "Tafsir", "contact": "0777888999"},
+    {"id": 9, "name": "Ustad Ahmed", "subject": "Quran Memorization", "contact": "0788999000"},
+    {"id": 10, "name": "Ustadah Fadumo", "subject": "Islamic History", "contact": "0799000111"},
+    {"id": 11, "name": "Ustad Hassan", "subject": "Arabic Grammar", "contact": "0700111222"},
+    {"id": 12, "name": "Ustadah Khadija", "subject": "Tajweed Advanced", "contact": "0700222333"},
+    {"id": 13, "name": "Ustad Omar", "subject": "Fiqh Advanced", "contact": "0700333444"},
+    {"id": 14, "name": "Ustadah Asha", "subject": "Quran Recitation", "contact": "0700444555"},
+    {"id": 15, "name": "Ustad Yusuf", "subject": "Hadith Studies", "contact": "0700555666"},
+    {"id": 16, "name": "Ustadah Amina", "subject": "Islamic Ethics", "contact": "0700666777"},
+    {"id": 17, "name": "Ustad Abdullahi", "subject": "Quranic Arabic", "contact": "0700777888"},
+    {"id": 18, "name": "Ustadah Halima", "subject": "Seerah Advanced", "contact": "0700888999"},
+    {"id": 19, "name": "Ustad Mukhtar", "subject": "Fiqh Application", "contact": "0700999000"},
+    {"id": 20, "name": "Ustadah Zahra", "subject": "Tafsir Advanced", "contact": "0701000111"}
   ]
 }
